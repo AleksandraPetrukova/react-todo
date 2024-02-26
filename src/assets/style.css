@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background-color: #333;
+    color: white; */
+}
+
+button {
+    border: none;
+    padding: 5px 10px;
+}
+
+.section {
+    text-align: center;
+    width: 400px;
+    min-height: 100vh;
+    margin: 30px auto;
+}
+
+.delete-btn {
+    background-color: #FF3D00;
+}
+
+.create-btn {
+    background-color: #FF9900;
+}
+
+.filter-cont {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+
+}
+
+.filter-btn {
+    background-color: #FF9900;
+    width: calc((100% - 40px ) / 3);
+}
+
+.single-task {
+    background-color: #FFD645;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
