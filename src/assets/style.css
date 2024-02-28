@@ -1,14 +1,45 @@
+:root {
+    --primary-bg-color: rgb(218, 218, 218);
+    --delete-btn-color: rgb(207, 110, 106);
+    --create-btn-color: rgb(188, 108, 63);
+    --confirm-btn-color: rgb(55, 108, 97);
+    --filter-btn-color: rgb(214, 159, 135);
+    --task-bg-color: rgb(240, 193, 114);
+    --input-act-border-color: rgb(244, 138, 35);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* background-color: #333;
-    color: white; */
+    background-color: var(--primary-bg-color);
+    font-family: 'Arial', sans-serif;
 }
 
 button {
     border: none;
+    padding: 7px 10px;
+    border-radius: 5px;
+}
+
+input[type="text"] {
     padding: 5px 10px;
+    outline: none;
+    border-radius: 5px;
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+ul {
+    list-style: none;
 }
 
 .section {
@@ -19,30 +50,64 @@ button {
 }
 
 .delete-btn {
-    background-color: #FF3D00;
+    background-color: var(--delete-btn-color);
+    min-width: 70px;
 }
 
 .create-btn {
-    background-color: #FF9900;
+    background-color: var(--create-btn-color);
+}
+
+.edit-btn-vis {
+    visibility: hidden;
+}
+
+.edit-btn-invis {
+    visibility: visible;
+    background-color: var(--confirm-btn-color);
 }
 
 .filter-cont {
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
-
 }
 
 .filter-btn {
-    background-color: #FF9900;
+    background-color: var(--filter-btn-color);
     width: calc((100% - 40px ) / 3);
 }
 
+.active {
+    background-color: var(--create-btn-color);
+}
+
 .single-task {
-    background-color: #FFD645;
+    background-color: var(--task-bg-color);
+    border-radius: 10px;
     padding: 10px;
     width: 100%;
     margin-bottom: 10px;
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
+}
+
+.input-edit-task {
+    background-color: var(--task-bg-color);
+    border: none;
+    width: 100%;
+}
+
+.input-edit-task:focus {
+    border: 2px solid var(--create-btn-color);
+}
+
+.input-task {
+    border: 2px solid var(--create-btn-color);
+    width: 70%;
+}
+
+.create-task-form {
+    display: flex;
+    gap: 20px;
 }

@@ -1,20 +1,20 @@
 import Button from "./Button"
 
-export default function FilterTasks({setFilterType}) {
-    function filterAll() {
-        setFilterType('all');
+export default function FilterTasks({onChange, filterType}) {
+    const filterAll = () => {
+        onChange('all');
     }
-    function filterActive() {
-        setFilterType('active');
+    const filterActive = () => {
+        onChange('active');
     }
-    function filterCompleted() {
-        setFilterType('completed');
+    const filterCompleted = () => {
+        onChange('completed');
     }
     return (
         <div className="filter-cont">
-            <Button handleClick={filterAll} className="filter-btn">All</Button>
-            <Button handleClick={filterActive} className="filter-btn">Active</Button>
-            <Button handleClick={filterCompleted} className="filter-btn">Completed</Button>
+            <Button handleClick={filterAll} className={filterType == "all"?"filter-btn active":"filter-btn"}>All</Button>
+            <Button handleClick={filterActive} className={filterType == "active"?"filter-btn active":"filter-btn"}>Active</Button>
+            <Button handleClick={filterCompleted}  className={filterType == "completed"?"filter-btn active":"filter-btn"}>Completed</Button>
         </div>
     )
 }

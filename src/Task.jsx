@@ -2,45 +2,49 @@ import Button from "./Button"
 import { useState } from "react";
 
 export default function Task({ index, name, completed, toggleTask, deleteTask, editTask }) {
-    const [isDeleteBtn, setIsDeleteBtn] = useState(true);
     const [newTask, setNewTask] = useState(name);
+    const [isEdit, setIsEdit] = useState(true);
 
-    function toggleDeleteBtn() {
-        setIsDeleteBtn(!isDeleteBtn);
-    }
-
-    function handleCheckboxChange() {
+    const handleCheckboxChange = () => {
         toggleTask(index);
     }
-    
-    function handleDelete(e) {
+
+    const handleDelete = (e) => {
         e.preventDefault();
         deleteTask(index);
     }
 
-    function handleEdit(e) {
+    const handleEdit = (e) => {
         e.preventDefault();
         editTask(index, newTask);
-        setIsDeleteBtn(true);
     }
 
-    function handleChange(e) {
+    const handleChange = (e) => {
         setNewTask(e.target.value);
     }
+
+    const handleEditState = () => {
+        setIsEdit(!isEdit);
+    }
+
 
     return (
         <form action="" className="single-task">
             <input 
                 type="checkbox"
-                name=""
                 checked={completed}
                 onChange={handleCheckboxChange}
+                className="checkbox-task"
             />
-            <input type="text" value={newTask} onClick={toggleDeleteBtn} onChange={handleChange}/>
-            {isDeleteBtn ? 
-                <Button handleClick={handleDelete} className="delete-btn">Delete</Button> :
-                <Button handleClick={handleEdit} className="confirm-btn">Confirm</Button>
-            }
+            <input type="text" 
+                value={newTask}
+                onChange={handleChange}
+                onFocus={handleEditState}
+                onBlur={handleEditState}
+                className="input-edit-task"
+            />
+            <Button handleClick={handleEdit} className={isEdit?"edit-btn-vis":"edit-btn-invis"}>Save</Button>
+            <Button handleClick={handleDelete} className="delete-btn">Delete</Button>
         </form>
     )
 }

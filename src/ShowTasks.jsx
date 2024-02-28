@@ -1,22 +1,22 @@
 import Task from "./Task"
 
-export default function ShowTasks({ taskList, setTaskList, filterType }) {
-    function handleToggle(index) {
+export default function ShowTasks({ taskList, onSubmit, filterType }) {
+    const handleToggle = (index) => {
         const updatedTaskList = [...taskList];
         updatedTaskList[index].completed = !updatedTaskList[index].completed;
-        setTaskList(updatedTaskList);
+        onSubmit(updatedTaskList);
     }
 
-    function deleteTask(index) {
+    const deleteTask = (index) => {
         const updatedTaskList = [...taskList];
         updatedTaskList.splice(index, 1);
-        setTaskList(updatedTaskList);
+        onSubmit(updatedTaskList);
     }
 
-    function editTask(index, newTask) {
+    const editTask = (index, newTask) => {
         const updatedTaskList = [...taskList];
         updatedTaskList[index].name = newTask;
-        setTaskList(updatedTaskList);
+        onSubmit(updatedTaskList);
     }
 
     const filteredTasks = taskList.filter(task => {
@@ -34,15 +34,18 @@ export default function ShowTasks({ taskList, setTaskList, filterType }) {
             <h2>Tasks</h2>
             <ul>
                 {filteredTasks.map((task, index) => 
-                    <Task 
-                        key={index}
-                        index={index}
-                        name={task.name}
-                        completed={task.completed}
-                        toggleTask={handleToggle}
-                        deleteTask={deleteTask}
-                        editTask={editTask}
-                    />)}
+                    <li key={task.id}>
+                        <Task 
+                            index={index}
+                            name={task.name}
+                            completed={task.completed}
+                            toggleTask={handleToggle}
+                            deleteTask={deleteTask}
+                            editTask={editTask}
+                        />
+                    </li>
+                    
+                )}
             </ul>
         </>
     )
