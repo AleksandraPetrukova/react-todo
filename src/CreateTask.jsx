@@ -1,13 +1,23 @@
 import Button from "./Button"
+import { useState } from "react";
 
-export default function CreateTask() {
+export default function CreateTask({ taskList, setTaskList }) {
+    const [task, setTask] = useState("");
     function handleSubmit(event) {
         event.preventDefault();
-        console.log("Task created");
+        const newTask = {
+            name: task,
+            completed: false
+        }
+        setTaskList([...taskList, newTask]);
+        setTask("");
+    }
+    function handleChange(e) {
+        setTask(e.target.value);
     }
     return (
         <form action="">
-            <input type="text" />
+            <input type="text" value={task} onChange={handleChange}/>
             <Button handleClick={handleSubmit} className="create-btn">Create Task</Button>
         </form>
     )
