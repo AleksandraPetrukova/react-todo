@@ -1,14 +1,14 @@
 import Button from "./Button"
 
-export default function FilterTasks() {
+export default function FilterTasks({setFilterType}) {
     function filterAll() {
-        console.log("Filtering all tasks");
+        setFilterType('all');
     }
     function filterActive() {
-        console.log("Filtering active tasks");
+        setFilterType('active');
     }
     function filterCompleted() {
-        console.log("Filtering completed tasks");
+        setFilterType('completed');
     }
     return (
         <div className="filter-cont">

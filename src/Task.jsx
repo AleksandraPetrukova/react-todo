@@ -1,8 +1,9 @@
 import Button from "./Button"
 import { useState } from "react";
 
-export default function Task({ index, name, completed, toggleTask, deleteTask }) {
+export default function Task({ index, name, completed, toggleTask, deleteTask, editTask }) {
     const [isDeleteBtn, setIsDeleteBtn] = useState(true);
+    const [newTask, setNewTask] = useState(name);
 
     function toggleDeleteBtn() {
         setIsDeleteBtn(!isDeleteBtn);
@@ -16,7 +17,17 @@ export default function Task({ index, name, completed, toggleTask, deleteTask })
         e.preventDefault();
         deleteTask(index);
     }
-    
+
+    function handleEdit(e) {
+        e.preventDefault();
+        editTask(index, newTask);
+        setIsDeleteBtn(true);
+    }
+
+    function handleChange(e) {
+        setNewTask(e.target.value);
+    }
+
     return (
         <form action="" className="single-task">
             <input 
@@ -25,10 +36,10 @@ export default function Task({ index, name, completed, toggleTask, deleteTask })
                 checked={completed}
                 onChange={handleCheckboxChange}
             />
-            <input type="text" value={name} onClick={toggleDeleteBtn}/>
+            <input type="text" value={newTask} onClick={toggleDeleteBtn} onChange={handleChange}/>
             {isDeleteBtn ? 
                 <Button handleClick={handleDelete} className="delete-btn">Delete</Button> :
-                <Button className="confirm-btn">Confirm</Button>
+                <Button handleClick={handleEdit} className="confirm-btn">Confirm</Button>
             }
         </form>
     )
