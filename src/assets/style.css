@@ -42,6 +42,12 @@ ul {
     list-style: none;
 }
 
+label {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
 .section {
     text-align: center;
     width: 400px;

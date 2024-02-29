@@ -39,9 +39,9 @@ export default function ShowTasks({ taskList, onSubmit, filterType }) {
                             index={index}
                             name={task.name}
                             completed={task.completed}
-                            toggleTask={handleToggle}
-                            deleteTask={deleteTask}
-                            editTask={editTask}
+                            onToggle={handleToggle}
+                            onDelete={deleteTask}
+                            onEdit={editTask}
                         />
                     </li>
                     

@@ -1,22 +1,22 @@
 import Button from "./Button"
 import { useState } from "react";
 
-export default function Task({ index, name, completed, toggleTask, deleteTask, editTask }) {
+export default function Task({ index, name, completed, onToggle, onDelete, onEdit }) {
     const [newTask, setNewTask] = useState(name);
     const [isEdit, setIsEdit] = useState(true);
 
     const handleCheckboxChange = () => {
-        toggleTask(index);
+        onToggle(index);
     }
 
     const handleDelete = (e) => {
         e.preventDefault();
-        deleteTask(index);
+        onDelete(index);
     }
 
     const handleEdit = (e) => {
         e.preventDefault();
-        editTask(index, newTask);
+        onEdit(index, newTask);
     }
 
     const handleChange = (e) => {
@@ -30,12 +30,14 @@ export default function Task({ index, name, completed, toggleTask, deleteTask, e
 
     return (
         <form action="" className="single-task">
+            <label htmlFor="taskCompleted" className="task-label">Checkbox</label>
             <input 
                 type="checkbox"
                 checked={completed}
                 onChange={handleCheckboxChange}
                 className="checkbox-task"
             />
+            <label htmlFor="newTask" className="task-label">Task:</label>
             <input type="text" 
                 value={newTask}
                 onChange={handleChange}
